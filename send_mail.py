@@ -16,8 +16,7 @@ class SendEmail(BaseScript):
     def send_mail(self, text='Email Body', subject='Hello world',
                   from_email='Sangeeta Math <sangeeta.1rn18mca30@gmail.com>',
                   to_emails=None):
-
-        print(self.args.to_emails)
+        
         msg = MIMEMultipart('alternative')
         msg['from'] = from_email
         msg['To'] = self.args.to_emails
@@ -39,6 +38,8 @@ class SendEmail(BaseScript):
         server.quit()
 
     def define_subcommands(self, subcommands):
+        """When we have multiple functionalities then there is a way to call or
+            execute each functionality with different sub command."""
         super(SendEmail, self).define_subcommands(subcommands)
         add_cmd = subcommands.add_parser("send_mail", help="send email")
         add_cmd.set_defaults(func=self.send_mail)
